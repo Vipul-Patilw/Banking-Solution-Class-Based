@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Users Account Detail</title>
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'login_style.css' %}">  
+</head>
+<body>
+     
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+     <div class="container-fluid">
+     <a class="navbar-brand" href="#">Banking Solutions Admin</a>
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+     <li class="nav-item ">
+     <a class="nav-link active" aria-current="page" href="#">Home</a>
+     </li>
+     <li class="nav-item">
+     <a class="nav-link" href="{% url 'useraccount' %}">Create Account</a>
+     </li>
+     <li class="nav-item dropdown">
+     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+     Dropdown
+     </a>
+     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+     <li><a class="dropdown-item" href="#">Action</a></li>
+     <li><a class="dropdown-item" href="#">Another action</a></li>
+     <li><hr class="dropdown-divider"></li>
+     <li><a class="dropdown-item" href="#">Something else here</a></li>
+     </ul>
+     </li>
+     <li class="nav-item">
+     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+     </li>
+     </ul>
+     
+     </div>
+     </div>
+     </nav>
+
+         <div class="msg8">
+        
+             {% if messages %}
+             
+             {% for message in messages %}
+       {{ message | safe }} 
+             {% endfor %}
+             {% else %}
+             <h3 align="center">All Users Account Details </h3>
+             {% endif %}
+             
+             <div class="table-responsive">
+             <table class="table" >
+             <thead>
+             <tr>
+             <th>#</th>
+             <th scope="col">Profile</th>
+             <th scope="col">Holder Name</th>
+             <th scope="col">Bank Name</th>
+             <th>Mobile Number</th>
+             <th>Email</th>
+             <th>Account Number</th>
+             <th>Card Number</th>
+             <th>Expired Date</th>
+             <th>Cvv</th>
+             <th>Gender</th>
+             <th>City</th>
+             <th>Birthdate</th>
+             <th>Account balance</th>
+             <th>Signature</th>
+             </tr>
+             </thead>
+             <tbody>
+             
+              {% for user in users_list %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td><img src="../media/{{user.profile_pic}}" height="50"></td>
+            
+             <td>{{user.holder_name}}</td> 
+             <td>{{user.bank_name}}</td>
+             <td>{{user.mobile_number}}</td>
+             <td>{{user.email}}</td>
+             <td>{{user.account_number}}</td>
+             <td>{{user.card_number}}</td>
+             <td>{{user.expired_date}}</td>
+             <td>{{user.cvv}}</td>
+             <td>{{user.gender}}</td>
+             <td>{{user.city}}</td>
+             <td>{{user.birthdate}}</td>
+               <td> ₹ {{user.balance}}</td>  
+             <td><img src="../media/{{user.signature}}" height="50"></td>
+             
+                </tr>
+           
+
+             {% endfor %}
+             
+             </tbody>
+             </table>    
+          
+              </div>                      
+                </div> 
+</body>
+</html>

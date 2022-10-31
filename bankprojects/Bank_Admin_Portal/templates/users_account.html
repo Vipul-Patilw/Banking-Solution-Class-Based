@@ -1,0 +1,398 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>welcome to Banking Solutions  Sign In  page</title>
+  <!-- CSS only -->
+   <link rel="stylesheet" type="text/css" href="dcodes/payment_icons/dc_payment_icons.css" /> 
+   <link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/payment_icons/dc_payment_icons.css" />
+   
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>  
+<link rel="stylesheet" href="{% static 'registration_style.css' %}">
+<style type="text/css">
+#e_date{
+width:69px;
+}
+#cvv{
+width:69px;
+}
+.mystyle{
+display:none;
+}
+label{
+    display: block;
+
+}
+
+.cvv input{
+height:90px!important}
+
+.error {
+color:red!important;}
+
+#both input{
+border-right:none;
+height:40px}
+.stylecard{
+    position: relative;
+    left: -29px;
+    border: solid 2px;
+    border-color: whitesmoke;
+    border-left: none;
+    border-radius: 5px!important;
+    background-color: white;}
+.validationCustom05{
+height:530px
+}
+
+</style>
+
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<body>
+    <div class="background_color">
+        <div id="clr">
+<a href= "{% url 'home' %}"> Banking Solutions Admin Portal </a>
+           
+        </div>
+    </div>
+    
+   <br>
+
+
+<form method="post"  enctype="multipart/form-data" data-ajax="false" class="row g-3 needs-validation m-2" novalidate>
+ {% csrf_token %}
+
+ <br><br>
+  <div class="col-md-12 text-center">
+ <p style ="margin-top:-20px">Profile Picture:</p> 
+ {{ form.profile_pic }}
+ <p><label for="profile" style="cursor: pointer"><img id="profile_output" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqKCA0WCWoqjIX5hwq6JFfaakFaA2qzhHOUGdFx7vARMfel6LqTGZPT0Du&s=10" style ="height:150px; width:150px;border:solid;"/></label></p>
+ <img src="https://cdn-icons-png.flaticon.com/512/83/83574.png" style="height:30px;margin-left:8%;margin-top:-82px;">  <br>  
+ </div>
+  <div class="col-md-4">
+<label for="validationCustom01" class="form-label">{{form.holder_name.label_tag}} </label> 
+{{form.holder_name}} 
+  <div class="invalid-feedback" >
+ <span class="error">This field is required!</span>
+  
+   </div>
+</div>
+
+  <div class="col-md-4">
+<label for="validationCustom01" class="form-label"></label>{{form.bank_name.label_tag}} </label> {{form.bank_name}}
+ 
+
+</div>
+  <div class="col-md-4">
+<label for="validationCustom01" class="form-label"></label>{{form.mobile_number.label_tag}} </label> {{form.mobile_number}} 
+<p class="error" id="m_error" >{{form.mobile_number.errors}}</p> 
+</div>
+  <div class="col-md-4">
+<label for="validationCustom01" class="form-label"></label>{{form.email.label_tag}} </label> {{form.email}} 
+<div class="invalid-feedback" > <span class="error">This field is required!</span></div>
+</div>
+
+  <div class="col-md-4">
+<label for="validationCustom01" class="form-label"></label>{{form.account_number.label_tag}} </label> {{form.account_number}} 
+<p class="error" id="a_error"></p>
+<div class="invalid-feedback" > <span class="error">This field is required!</span></div>
+</div>
+  <div class="col-md-4">
+<label for="validationCustom01" class="form-label"></label>{{form.card_number.label_tag}} </label>
+<div class="input-group has-validation">
+ {{form.card_number}} <span class="input-group-text stylecard" id="inputGroupPrepend"><i class="fa fa-credit-card" style ="color:RGB(175,220,236)"></i></span>
+
+
+<div class="invalid-feedback" > <span class="error">This field is required!</span></div>
+</div>
+<p class="error" id="c_error"></p>
+<div id="both" class="mystyle row pt-2">
+  <div class="col-md-6">
+<label for="validationCustom01" class="form-label"></label>{{form.expired_date.label_tag}} </label>  
+<div class="input-group has-validation">
+    {{form.expired_date}}
+    <span class="input-group-text stylecard" id="inputGroupPrepend"><i class="fa fa-credit-card" style ="color:RGB(175,220,236)"></i>
+    </span>
+    
+   <div class="invalid-feedback"> 
+     <span class="error">This field is required!</span>
+   </div>
+   </div>
+</div>
+  <div class="col-md-6">
+<label for="validationCustom01" class="form-label"></label>{{form.cvv.label_tag}} </label>  
+ <div class="input-group has-validation cvv">
+{{form.cvv}}
+<span class="input-group-text " id="inputGroupPrepend"><span class="dc_payment_icons_card_back" title="Card security code (CCV)"></span></span>
+
+
+   <div class="invalid-feedback" > 
+     <span class="error">This field is required!</span>
+   </div>
+   </div>
+
+</div>
+ </div>
+</div>
+
+
+   <div class="col-md-4">
+<label for="validationCustom01" class="form-label"></label>{{form.gender.label_tag}} </label> {{form.gender}} 
+<div class="invalid-feedback" > <span class="error">This field is required!</span></div>
+ </div>
+  <div class="col-md-4">
+<label for="validationCustom01" class="form-label"></label>{{form.city.label_tag}} </label> {{form.city}} 
+<div class="invalid-feedback" > <span class="error">This field is required!</span></div>
+</div>
+  <div class="col-md-4">
+<label for="validationCustom01" class="form-label"></label>{{form.birthdate.label_tag}} </label> {{form.birthdate}} 
+<div class="invalid-feedback" > <span class="error">This field is required!</span></div>
+ </div>
+  <div class="col-md-12 text-center pt-5">
+
+{{ form.signature }}
+
+ <p ><label for="signature" style="cursor: pointer"><img id="signature_output" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9FTiWx-0sB3VFRx54c0haKa_wf4-v_-7aLQ&usqp=CAU" style ="height:150px; width:150px;border:solid;"/></label></p>
+ <img src="https://cdn-icons-png.flaticon.com/512/83/83574.png" style="height:30px;margin-left:8%;margin-top:-82px;">  
+ 
+ <br>
+ <p  style ="margin-top:-20px">Signature:</p> 
+</div>
+
+      <button class="btn btn-primary" id="submit" style="background-color: #36454f;" type="submit">Submit</button>
+        </form>
+ 
+  <script type="text/javascript">
+
+
+
+
+  var cvv = document.getElementById("validationCustom05");
+  
+  cvv.onkeydown = function () {
+  cvv.maxLength="3"}
+var input = document.getElementById("validationCustom01");
+
+input.onkeydown = function () {
+    if (input.value.length > 0) {
+
+        if (input.value.length % 4 == 0) {
+        if(input.value.length < 16){
+            input.value += " ";}
+        }
+    }
+    
+}
+var c_num = document.getElementById("validationCustom02");
+
+c_num.onkeydown = function () {
+    if (c_num.value.length > 0 ) {
+
+        if (c_num.value.length % 4 == 0) {
+        if(c_num.value.length < 16){
+        c_num.value += " ";}
+        }
+    }
+    
+}
+     
+   var e_date = document.getElementById("validationCustom04");
+   
+   e_date.onkeydown = function () {
+   e_date.maxLength ="5"
+   if (e_date.value.length > 0 ) {
+   
+   if (e_date.value.length  == 2) {
+  
+   e_date.value += "/";
+   }
+   }
+   
+   }
+
+  var element = document.getElementById("both")
+  var data = document.getElementById("submit") 
+  data.addEventListener("click",()=>{
+    element.classList.remove("mystyle");
+  })
+
+  function account_number_validation() {
+  var y = document.getElementById("validationCustom01").value;
+  document.getElementById("validationCustom01").maxLength="16"
+  if(y.length==0){
+  document.getElementById("a_error").innerHTML="";
+  }
+  else if(y.length != 16){
+  document.getElementById("a_error").innerHTML = "please enter a valid account number";
+  
+  
+  }
+  else{
+  var element = document.getElementById("both")
+  element.classList.remove("mystyle");
+  document.getElementById("a_error").innerHTML="";
+  
+  }
+  }
+  function card_number_validation() {
+  var z = document.getElementById("validationCustom02").value;
+  document.getElementById("validationCustom02").maxLength="16";
+  
+  if(z.length==0){
+  document.getElementById("c_error").innerHTML="";
+  }
+  else if(z.length != 16){
+  document.getElementById("c_error").innerHTML = "please enter a valid card number";
+  
+  }
+  else{
+ 
+  document.getElementById("c_error").innerHTML="" 
+  }
+  }
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+  
+  </script>       
+      
+  <script type="text/javascript">
+
+  var loadProfile = function(event) {
+  var image = document.getElementById('profile_output');
+//   var files = document.getElementById('file'); 
+  image.src = URL.createObjectURL(event.target.files[0]);
+  };
+
+  var loadSgnature = function(event) {
+  var imageSignature = document.getElementById('signature_output');
+
+//   var files = document.getElementById('file'); 
+  imageSignature.src = URL.createObjectURL(event.target.files[0]);
+  };
+
+
+  var cvv = document.getElementById("cvv");
+  
+  cvv.onkeydown = function () {
+  cvv.maxLength="3"}
+var input = document.getElementById("a_num");
+
+input.onkeydown = function () {
+    if (input.value.length > 0) {
+
+        if (input.value.length % 4 == 0) {
+        if(input.value.length < 16){
+            input.value += " ";}
+        }
+    }
+    
+}
+var c_num = document.getElementById("c_num");
+
+c_num.onkeydown = function () {
+    if (c_num.value.length > 0 ) {
+
+        if (c_num.value.length % 4 == 0) {
+        if(c_num.value.length < 16){
+        c_num.value += " ";}
+        }
+    }
+    
+}
+     
+   var e_date = document.getElementById("e_date");
+   
+   e_date.onkeydown = function () {
+   e_date.maxLength ="5"
+   if (e_date.value.length > 0 ) {
+   
+   if (e_date.value.length  == 2) {
+  
+   e_date.value += "/";
+   }
+   }
+   
+   }
+
+
+
+  function phoneValidation() {
+  var x = document.getElementById("phone").value;
+  if(x.length==0){
+  document.getElementById("m_error").innerHTML="";
+  }
+  else if(x.length != 10){
+  
+  document.getElementById("m_error").innerHTML = "please enter a valid 10 digit number";
+  
+  }
+  
+  else{
+  document.getElementById("m_error").innerHTML="";
+  }
+  }
+  function account_number_validation() {
+  var y = document.getElementById("a_num").value;
+  document.getElementById("a_num").maxLength="16"
+  if(y.length==0){
+  document.getElementById("a_error").innerHTML="";
+  }
+  else if(y.length != 16){
+  document.getElementById("a_error").innerHTML = "please enter a valid account number";
+  
+  
+  }
+  else{
+  document.getElementById("a_error").innerHTML="";
+  
+  }
+  }
+  function card_number_validation() {
+  var z = document.getElementById("c_num").value;
+  document.getElementById("c_num").maxLength="16";
+  
+  if(z.length==0){
+  document.getElementById("c_error").innerHTML="";
+  }
+  else if(z.length != 16){
+  document.getElementById("c_error").innerHTML = "please enter a valid card number";
+  
+  }
+  else{
+  var element = document.getElementById("both")
+  element.classList.remove("mystyle");
+  document.getElementById("c_error").innerHTML="" 
+  }
+  }
+
+  
+  </script>        
+</body>
+</html>

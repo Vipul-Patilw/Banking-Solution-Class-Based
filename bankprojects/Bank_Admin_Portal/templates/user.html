@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>user</title>
+    <style type="text/css">
+    .msg{
+    background-color:whitesmoke;
+    border-radius:10px;
+    width:auto;
+    max-width:200px;
+    position: fixed;
+    bottom:70px;
+    padding:5px;}
+    .msg1{
+    background-color: skyblue;
+    border-radius:10px;
+    width:auto;
+    max-width:200px;
+    float:right;
+    margin-top:470px;
+    padding:5px;
+    overflow-wrap:word-break;}</style>
+    
+</head>
+<body class="bodyclr">
+    <header><div class="nav">
+        <div id="clr"><a href= "chat.html"><img src="https://scontent.fpnq7-4.fna.fbcdn.net/v/t1.6435-9/241637508_108941118195237_7518780851306120171_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=730e14&_nc_ohc=6vJDZXBzexMAX87zfbd&_nc_ht=scontent.fpnq7-4.fna&oh=dce5ebdfd56aa1ee89a70039d4cb6c5e&oe=615F49AA"></a><a href= "userprofile.html"><img src="https://scontent.fpnq6-1.fna.fbcdn.net/v/t1.6435-9/141715418_105891534850513_8690593850524803890_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=ZqyuZ1-cFXQAX-bP419&tn=18D0jixfP9qod1lg&_nc_ht=scontent.fpnq6-1.fna&oh=cc64eada24b1f43d96121aea87624667&oe=615F1AB4"></a><a href= "userprofile.html">vipul patil</a></div>
+    </div></header>
+  
+    <footer>
+    {% if chats %}
+    {% for chat in chats %}
+    <div class ="msg">{{chat.msg}}</div>
+    <div class ="msg1">{{chat.msg}}</div>
+   
+  
+     <div class="typemsg">
+      <form method="post">
+      {% csrf_token %}
+        <input type="text" placeholder=" type message..." name="msg">
+        <input type="email" placeholder=" type message..." value="{{chat.email}}" name="email">
+          {% endfor %}
+    {% endif %}
+    <button type="submit">send</button>
+ </form>   </div>    
+    </footer>
+    
+</body>
+</html>
